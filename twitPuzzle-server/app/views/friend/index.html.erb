@@ -1,0 +1,49 @@
+<h1>Listing Friends</h1>
+
+
+<p>ユーザ一覧</p>
+<table>
+  <thead>
+    <tr>
+      <th>ユーザID</th>
+      <th>Name</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody class="table table-striped table-hover">
+
+  <% @users.each do |user| %>
+
+    <%= form_for(@friend, :url=>{:action => 'create'}) do |f| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.name%></td>
+        <%= f.hidden_field(:friend_id, value: user.id) %>
+        <% follow_flag = true%>
+
+        <% for friend in @friends_list %>
+        	<% if friend.friend_id == user.id %>
+        		<%follow_flag = false%>
+						<% @follow = friend%>
+	        	<% break %>
+	        <% end %>
+	      <% end %>
+
+	       <% if follow_flag == true %>
+ 	        <td> <input type="submit" name="follow_submit" value="フォロー"></td>
+	        <% else %>
+	        <td> <input type="submit" name="unfollow_submit" value="アンフォロー"></td>
+        <% end %>
+
+
+      </tr>
+    <% end %>
+  <% end %>
+
+  </tbody>
+</table>
+
+<br />
+<%= link_to 'New Tweet', new_puzzle_path %>
+<%= link_to 'logout', login_path(0), method: :delete %>

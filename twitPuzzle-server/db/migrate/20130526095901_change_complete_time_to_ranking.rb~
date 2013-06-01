@@ -1,0 +1,6 @@
+class ChangeCompleteTimeToRanking < ActiveRecord::Migration
+  def self.up
+      change_column :rankings, :complete_time, :date
+
+  end
+end

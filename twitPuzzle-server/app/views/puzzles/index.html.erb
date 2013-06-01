@@ -1,0 +1,31 @@
+<h1>Listing puzzles</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tweet</th>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @puzzles.each do |puzzle| %>
+    <tr>
+      <td><%= puzzle.user.name %></td>
+      <td><%= puzzle.tweet %></td>
+      <td><%= puzzle.created_at %></td>
+      <td><%= image_tag(url_for(:action => 'get_image', :id => puzzle.id), :size => '100x100')%></td>
+      <td><%= link_to 'Show', puzzle %></td>
+      <td><%= link_to 'Edit', edit_puzzle_path(puzzle) %></td>
+      <td><%= link_to 'Destroy', puzzle, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to 'New Puzzle', new_puzzle_path %>
+<%= link_to 'Logout', login_path(0), method: :delete %>

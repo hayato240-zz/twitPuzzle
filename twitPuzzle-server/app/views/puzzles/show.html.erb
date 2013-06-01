@@ -1,0 +1,11 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Tweet:</strong>
+  <%= @puzzle.tweet %> <br>
+	<%= image_tag(url_for(:action => 'get_image', :id => @puzzle.id)) %>
+</p>
+
+
+<%= link_to 'Edit', edit_puzzle_path(@puzzle) %> |
+<%= link_to 'Back', puzzles_path %>
